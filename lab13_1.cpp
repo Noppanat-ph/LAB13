@@ -19,3 +19,40 @@ int main(){
     cout << "Min = " << B[5];
     return 0;
 }
+
+void stat(const double a[], int n, double b[]){
+    double max = a[0], min = a[0], sum = 0, Amean, SDevia, Gmean = 1, Hmean;
+    
+    for(int i=0; i<n; i++){
+        sum = sum+a[i];
+    }
+    
+    Amean = sum/n;
+    
+    for(int i=0; i<n; i++){
+        SDevia = SDevia + pow(a[i]-Amean,2);
+    }
+    SDevia = sqrt(SDevia/n);
+
+    for(int i=0; i<n; i++){
+        Gmean = Gmean * a[i];
+    }
+    Gmean = pow(Gmean,1.0/n);
+    
+    for(int i=0; i<n; i++){
+        Hmean = Hmean + 1/a[i];
+    }
+    Hmean = n/Hmean;
+
+    for(int i=1; i<n; i++){
+        if(a[i]>max) max = a[i];
+        if(a[i]<min) min = a[i];
+    }
+    
+    b[0]=Amean;
+    b[1]=SDevia;
+    b[2]=Gmean;
+    b[3]=Hmean;
+    b[4]=max;
+    b[5]=min;
+}
